@@ -95,7 +95,7 @@
 
     <!-- زر التحميل -->
     <a id="downloadBtn" href="#" class="btn disabled">⏳ انتظر 5 ثواني...</a>
-    <div id="counter">📥 تم التحميل 0 مرة</div>
+    <div id="counter">📥 تم التحميل 100000 مرة</div>
   </div>
 
   <footer>
@@ -109,7 +109,7 @@
 
   <script>
     // استرجاع العداد من التخزين المحلي
-    let downloads = localStorage.getItem("downloads") || 0;
+    let downloads = localStorage.getItem("downloads") || 100000;
     const counter = document.getElementById("counter");
     counter.textContent = "📥 تم التحميل " + downloads + " مرة";
 
