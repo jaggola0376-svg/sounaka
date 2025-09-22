@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تحميل تطبيق سوقنا</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px 15px 80px;
+      background: #f7f7f7;
+      margin: 0;
+    }
+    .box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,.1);
+      display: inline-block;
+      max-width: 420px;
+      width: 100%;
+    }
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #555;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    .ad {
+      margin: 20px 0;
+      padding: 15px;
+      background: #eee;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #888;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 15px 30px;
+      background: #27ae60;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+    a.btn:hover {
+      background: #219150;
+    }
+    a.btn.disabled {
+      background: #aaa;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+    #counter {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+    footer {
+      margin-top: 30px;
+      color: #777;
+      font-size: 13px;
+    }
+    /* إعلان ثابت أسفل الصفحة */
+    .sticky-ad {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #eee;
+      padding: 12px;
+      text-align: center;
+      border-top: 1px solid #ccc;
+      font-size: 14px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>مرحباً بك في <span style="color:#27ae60;">سوقنا</span></h1>
+    <p>قم بتحميل تطبيقنا الآن وابدأ البيع والشراء بسهولة وأمان.<br>
+    التطبيق مجاني 100% ويعمل على جميع أجهزة الأندرويد.</p>
+
+    <!-- إعلان أعلى الزر -->
+    <div class="ad">
+      ✨ هنا مكان إعلانك (AdSense أو بنر دعائي) ✨
+    </div>
+
+    <!-- زر التحميل -->
+    <a id="downloadBtn" href="#" class="btn disabled">⏳ انتظر 5 ثواني...</a>
+    <div id="counter">📥 تم التحميل 0 مرة</div>
+  </div>
+
+  <footer>
+    <p>© 2025 سوقنا - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <!-- إعلان ثابت أسفل الصفحة -->
+  <div class="sticky-ad">
+    🛒 إعلان ثابت يظهر دائماً هنا (يمكن استبداله بكود AdSense)
+  </div>
+
+  <script>
+    // استرجاع العداد من التخزين المحلي
+    let downloads = localStorage.getItem("downloads") || 0;
+    const counter = document.getElementById("counter");
+    counter.textContent = "📥 تم التحميل " + downloads + " مرة";
+
+    let countdown = 5;
+    const btn = document.getElementById("downloadBtn");
+
+    // مؤقت 5 ثواني
+    const timer = setInterval(() => {
+      if (countdown > 1) {
+        countdown--;
+        btn.textContent = "⏳ انتظر " + countdown + " ثواني...";
+      } else {
+        clearInterval(timer);
+        btn.classList.remove("disabled");
+        // 🔗 هنا رابط Google Drive المباشر (بدّل الـ FILE_ID بالمعرّف تبعك)
+        btn.href = "https://drive.google.com/uc?export=download&id=1ImU7Fkg2Pb7t5TKUFerf5yQLKreroKe4";
+        btn.textContent = "⬇ تحميل التطبيق (APK)";
+
+        // زيادة العداد عند الضغط
+        btn.addEventListener("click", () => {
+          downloads++;
+          localStorage.setItem("downloads", downloads);
+          counter.textContent = "📥 تم التحميل " + downloads + " مرة";
+        });
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
